@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+    }
+    h2 {
+      margin: 0 0 15px 0;
+      font-size: 16px;
+      color: #00d4ff;
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background: #16213e;
+      color: #fff;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #00d4ff;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .btn-start {
+      background: #00d4ff;
+      color: #1a1a2e;
+    }
+    .btn-start:hover {
+      background: #00b8e6;
+    }
+    .btn-stop {
+      background: #ff4757;
+      color: #fff;
+    }
+    .btn-stop:hover {
+      background: #ff3344;
+    }
+    .status {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .status.active {
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+    }
+    .status.inactive {
+      background: rgba(255, 71, 87, 0.2);
+      color: #ff4757;
+    }
+    .status.found {
+      background: rgba(46, 213, 115, 0.2);
+      color: #2ed573;
+    }
+    .btn-test {
+      margin-top: 8px;
+      background: #6c5ce7;
+      color: #fff;
+    }
+    .btn-test:hover {
+      background: #5b4cdb;
+    }
+    .btn-pick {
+      margin-bottom: 8px;
+      background: #2ed573;
+      color: #1a1a2e;
+    }
+    .btn-pick:hover {
+      background: #26c066;
+    }
+    .selector-row {
+      display: flex;
+      gap: 8px;
+    }
+    .selector-row input {
+      flex: 1;
+    }
+    .selector-row button {
+      width: auto;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔄 Auto Refresh Monitor</h2>
+  
+  <div class="input-group">
+    <label>Element to monitor:</label>
+    <div class="selector-row">
+      <input type="text" id="selector" placeholder="Click 'Pick' or enter selector">
+      <button id="pickBtn" class="btn btn-pick">🎯 Pick</button>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <label>Mode:</label>
+    <select id="mode" style="width:100%;padding:8px;border:1px solid #333;border-radius:5px;background:#16213e;color:#fff;font-size:14px;">
+      <option value="change">Stop when content changes</option>
+      <option value="contains">Stop when contains text</option>
+      <option value="notContains">Stop when text disappears</option>
+    </select>
+  </div>
+
+  <div class="input-group" id="textGroup" style="display:none;">
+    <label>Text to find:</label>
+    <input type="text" id="searchText" placeholder="Enter text to search for...">
+  </div>
+  
+  <div class="input-group">
+    <label>Refresh interval (seconds):</label>
+    <input type="number" id="interval" value="10" min="1" max="300">
+  </div>
+  
+  <button id="startBtn" class="btn btn-start">▶ Start Monitoring</button>
+  <button id="stopBtn" class="btn btn-stop" style="display: none;">⏹ Stop Monitoring</button>
+  <button id="testSound" class="btn btn-test">🔊 Test Sound</button>
+  
+  <div id="status" class="status inactive">Not monitoring</div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
